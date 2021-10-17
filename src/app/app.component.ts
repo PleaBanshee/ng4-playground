@@ -29,6 +29,10 @@ import { Component } from '@angular/core';
   <button [disabled]="buttonStatus">CLICK ME!</button>
   <br><br>
   <button [disabled]="isClickable != 'true'">Try again...</button>
+  <br><br>
+  <button (click)="theClick($event)">For Events</button>
+  <br><br>
+  <button (mouseenter)="onClick($event)">Hover over Me!</button>
   `,
   styleUrls: ['./app.component.css']
 })
@@ -42,4 +46,12 @@ export class AppComponent {
     angularLogo = '../assets/shield-large.svg'
     buttonStatus = true
     isClickable = "true"
+
+    theClick(event) {
+        alert(`You just missed the event: ${event}`);
+        console.log(event);
+    }
+    onClick(event) {
+      console.log(event);
+    }
 }
