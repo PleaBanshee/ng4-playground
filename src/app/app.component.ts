@@ -5,7 +5,8 @@ import { Component } from '@angular/core';
 @Component({  // configs
   selector: 'app-root',
   template:
-  `<h1>HELLO WORLD!</h1>
+  `
+  <h1>HELLO WORLD!</h1>
   <p>{{myObject.location}}</p>
   <ul>
       <li *ngFor="let elem of arr">{{elem}}</li>
@@ -21,6 +22,13 @@ import { Component } from '@angular/core';
   <ng-template #var2>
     I actually prefer React...
   </ng-template>
+  <img src="{{angularLogo}}">
+  <img [src]="angularLogo">
+  <img bind-src="angularLogo">
+  <br><br>
+  <button [disabled]="buttonStatus">CLICK ME!</button>
+  <br><br>
+  <button [disabled]="isClickable != 'true'">Try again...</button>
   `,
   styleUrls: ['./app.component.css']
 })
@@ -31,4 +39,7 @@ export class AppComponent {
         location: 'USA'
     }
     arr = ["Llewellyn","John","Shené"]
+    angularLogo = '../assets/shield-large.svg'
+    buttonStatus = true
+    isClickable = "true"
 }
