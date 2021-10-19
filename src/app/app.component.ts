@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { DataService } from './data.service';
+import { trigger,state,style,transition,animate } from '@angular/animations';
+
 // Use tilde (`) key to create more than one element in template
 // *ngFor:  renders a template for each item in a collection
 
@@ -8,6 +10,7 @@ import { DataService } from './data.service';
   template:
   `
   <h1>HELLO WORLD!</h1>
+  <h3 [@aNimation]='state' (click)="animated()">AnGuLaR</h3>
   <p>{{myObject.location}}</p>
   <ul>
       <li *ngFor="let elem of arr">{{elem}}</li>
@@ -46,23 +49,54 @@ import { DataService } from './data.service';
          color: #FF0000
       }
 
+      h3 {
+          width: 300px;
+          background: lightgray;
+          margin: 10px auto;
+          margin-left: 100px;
+          text-align: center;
+          paddding : 20px;
+          font-size: 2rem;
+          background-size: 300px 100px;
+      }
+
       .large-title {
          font-size: 4em
       }
       `
+  ],
+  animations: [
+      trigger('aNimation',[
+          state('small',style({
+              transform: 'scale(1)',
+          })),
+          state('large',style({
+            transform: 'scale(1.2)',
+        })),
+        // <=> indicates that animation will transition smoothly in and out
+        transition('small <=> large',animate('300ms ease-in', style({
+            transform: 'translateY(40px)'
+        })))
+      ]),
   ]
 })
 export class AppComponent {
+
+    state:string = '';
+    someProp:string = '';
 
     constructor(private dataservice:DataService) {
 
     }
 
-    someProp:string = '';
 
     ngOnInit() { // runs when component loads
         console.log(this.dataservice.cars)
         this.someProp = this.dataservice.myData()
+    }
+
+    animated() {
+        this.state = (this.state === 'small' ? 'large' : 'small' );
     }
 
     myObject = {
@@ -70,6 +104,7 @@ export class AppComponent {
         age: 33,
         location: 'USA'
     }
+
     arr = ["Llewellyn","John","Shené"]
     angularLogo = '../assets/shield-large.svg'
     buttonStatus = true
