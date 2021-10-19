@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataService } from './data.service';
 // Use tilde (`) key to create more than one element in template
 // *ngFor:  renders a template for each item in a collection
 
@@ -34,6 +35,7 @@ import { Component } from '@angular/core';
   <br><br>
   <button (mouseenter)="onClick($event)">Hover over Me!</button>
   <h2 [ngClass]="titleClasses">Styling is fun!</h2>
+  <p>{{someProp}}</p>
   `,
   styles: [ // css stylesheets configured here
       `h1 {
@@ -51,6 +53,18 @@ import { Component } from '@angular/core';
   ]
 })
 export class AppComponent {
+
+    constructor(private dataservice:DataService) {
+
+    }
+
+    someProp:string = '';
+
+    ngOnInit() { // runs when component loads
+        console.log(this.dataservice.cars)
+        this.someProp = this.dataservice.myData()
+    }
+
     myObject = {
         gender: "Male",
         age: 33,
