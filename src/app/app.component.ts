@@ -33,8 +33,22 @@ import { Component } from '@angular/core';
   <button (click)="theClick($event)">For Events</button>
   <br><br>
   <button (mouseenter)="onClick($event)">Hover over Me!</button>
+  <h2 [ngClass]="titleClasses">Styling is fun!</h2>
   `,
-  styleUrls: ['./app.component.css']
+  styles: [ // css stylesheets configured here
+      `h1 {
+          text-decoration: underline;
+      }
+
+      .red-title {
+         color: #FF0000
+      }
+
+      .large-title {
+         font-size: 4em
+      }
+      `
+  ]
 })
 export class AppComponent {
     myObject = {
@@ -53,5 +67,11 @@ export class AppComponent {
     }
     onClick(event) {
       console.log(event);
+    }
+
+    titleClass = false
+    titleClasses = {
+        'red-title': true,
+        'large-title': true
     }
 }
