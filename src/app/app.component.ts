@@ -106,7 +106,7 @@ export class AppComponent {
     }
 
     arr = ["Llewellyn","John","Shené"]
-    angularLogo = '../assets/shield-large.svg'
+    angularLogo = '../shield-large.svg'
     buttonStatus = true
     isClickable = "true"
 
